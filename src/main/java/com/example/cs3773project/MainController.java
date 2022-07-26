@@ -1,14 +1,39 @@
 package com.example.cs3773project;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainController {
     @FXML
     private Label welcomeText;
 
     @FXML
+    private AnchorPane Main;
+
+    @FXML
+    private Button NewUser;
+
+
+    @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
+    }
+
+    @FXML
+    public void action1(ActionEvent event) throws IOException { //method to load user-view fxml on action
+        Main = FXMLLoader.load(getClass().getResource("user-view.fxml"));
+        Scene scene = new Scene(Main);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 }
