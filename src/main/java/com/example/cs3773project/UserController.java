@@ -19,7 +19,6 @@ public class UserController {
     @FXML
     private Button CreateButton;
 
-
     @FXML
     private Button BackButton;
 
