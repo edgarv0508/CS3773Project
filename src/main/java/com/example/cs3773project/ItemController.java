@@ -13,27 +13,30 @@ import java.io.IOException;
 public class ItemController {
 
     @FXML
-    private Button button;
+    private Button modify;
+
+    @FXML
+    private Button create;
+
+    @FXML
+    private Button home;
 
     @FXML
     void createItem(MouseEvent event) throws IOException {
-        Stage stage = (Stage) button.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("item-create.fxml"));
-        stage.setTitle("Create Item");
-        stage.setScene(new Scene(root));
+
     }
 
     @FXML
     void modifyItem(MouseEvent event) throws IOException {
-        Stage stage = (Stage) button.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("item-modify.fxml"));
-        stage.setTitle("Modify Item");
-        stage.setScene(new Scene(root));
+
     }
 
     @FXML
-    void reutrnHome(MouseEvent event) {
-
+    void reutrnHome(MouseEvent event) throws IOException {
+        Stage stage = (Stage) home.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("main-view.fxml"));
+        stage.setTitle("Create Item");
+        stage.setScene(new Scene(root));
     }
 
 }
