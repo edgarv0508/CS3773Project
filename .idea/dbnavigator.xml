@@ -38,6 +38,13 @@
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="0e15abdb-cd23-4c57-a81c-19b5700d916f" />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="0e15abdb-cd23-4c57-a81c-19b5700d916f" dataset="myshop.itemlist" active-filter-id="6ef2a145-084f-4a11-b142-b60675809cf4">
+      <filter id="6ef2a145-084f-4a11-b142-b60675809cf4" name="Shoe" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="item" operator="=" value="Shoe" active="true" />
+      </filter>
+    </filter-actions>
+  </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
   </component>

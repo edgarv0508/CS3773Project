@@ -5,6 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
 import java.io.IOException;
 
 public class Main extends Application {
@@ -18,6 +24,12 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        try{
+            Connection conn = DriverManager.getConnection("jdbc:mysqk://localhost:3306/jdbc-test", "root", "1234");
+            Statement statement = conn.createStatement();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
         launch();
     }
 
