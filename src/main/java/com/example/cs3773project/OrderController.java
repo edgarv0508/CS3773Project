@@ -51,6 +51,12 @@ public class OrderController implements Initializable {
         viewCol.setCellValueFactory(new PropertyValueFactory<Order, String>("view"));
 
         tableView.setItems(info);
+        tableView.setSelectionModel(null);
+        orderNumCol.setSortable(false);
+        orderDateCol.setSortable(false);
+        customerNameCol.setSortable(false);
+        amountCol.setSortable(false);
+        viewCol.setSortable(false);
         //System.out.println(orderNumCol);
         //tableView.getColumns().addAll(orderNumCol, orderDateCol, customerNameCol, amountCol, viewCol);
     }
