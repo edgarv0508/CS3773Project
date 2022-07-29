@@ -33,7 +33,7 @@ public class OrderController implements Initializable {
     private TableView<Order> tableView;
 
     @FXML
-    private ScrollPane CurrentOrderPane;
+    private ScrollPane currentOrderPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

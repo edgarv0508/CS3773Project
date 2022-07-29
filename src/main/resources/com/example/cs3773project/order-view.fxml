@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.cs3773project.OrderController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<ScrollPane fx:id="currentOrderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.example.cs3773project.OrderController">
+   <content>
+      <AnchorPane prefHeight="401.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="tableView" layoutX="39.0" layoutY="63.0" prefHeight="308.0" prefWidth="495.0">
+              <columns>
+                <TableColumn fx:id="orderNumCol" prefWidth="75.0" text="Order #" />
+                <TableColumn fx:id="orderDateCol" prefWidth="131.0" text="Date" />
+                  <TableColumn fx:id="customerNameCol" prefWidth="145.0" text="Customer Name" />
+                  <TableColumn fx:id="amountCol" prefWidth="75.0" text="Total" />
+                  <TableColumn fx:id="viewCol" prefWidth="68.0" text="View" />
+              </columns>
+            </TableView>
+            <Label layoutX="39.0" layoutY="23.0" text="Current Orders">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
