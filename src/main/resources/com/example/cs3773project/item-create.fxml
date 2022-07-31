@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs3773project.ItemCreate">
+   <children>
+      <Button layoutX="67.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#create" text="Create" />
+      <Button layoutX="72.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Back" />
+      <TextField layoutX="373.0" layoutY="44.0" text="Name" />
+      <TextField layoutX="373.0" layoutY="111.0" text="Price" />
+      <TextField layoutX="373.0" layoutY="200.0" text="Amount" />
+   </children>
+</AnchorPane>
