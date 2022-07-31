@@ -2,13 +2,18 @@ package com.example.cs3773project;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Order {
-    private SimpleStringProperty orderNumber;
-    private SimpleStringProperty orderDate;
-    private SimpleStringProperty customerName;
-    private SimpleStringProperty amount;
-    private SimpleStringProperty view;
+/*
+ * Isaac Nguyen rrg053
+ * CS 3773 Software Engineering
+ * August 3, 2022
+ */
 
+//The Order class control get the data from database and stores it in a variable to be used
+public class Order {
+    //SimpleStringProperty variable for order details
+    private SimpleStringProperty orderNumber, orderDate, customerName, amount, view;
+
+    //Order method that stores data to variables
     public Order(String oNumber, String oDate, String cName, String amt, String view){
         this.orderNumber = new SimpleStringProperty(oNumber);
         this.orderDate = new SimpleStringProperty(oDate);
@@ -17,6 +22,10 @@ public class Order {
         this.view = new SimpleStringProperty(view);
 
     }
+
+    /*
+    * Getters and Setters for each variable
+     */
     public String getOrderNumber() {
         return orderNumber.get();
     }
