@@ -65,7 +65,7 @@ public class ItemCreate {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt= conn.createStatement();
-            String sql = "INSERT INTO users (item, amount, price)" + "VALUES (?, ?, ?)";
+            String sql = "INSERT INTO itemList (item, amount, price)" + "VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, item);
             preparedStatement.setString(2, amount);
