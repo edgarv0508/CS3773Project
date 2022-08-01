@@ -30,16 +30,16 @@ public class ItemController {
     private TableView<Items> itemTable;
 
     @FXML
-    private TableColumn<Items, ?> item;
+    private TableColumn<Items, ?> cItem;
 
     @FXML
-    private TableColumn<Items, ?> amount;
+    private TableColumn<Items, ?> cAmount;
 
     @FXML
-    private TableColumn<Items, ?> price;
+    private TableColumn<Items, ?> cPrice;
 
     @FXML
-    private TableColumn<Items, ?> picture;
+    private TableColumn<Items, ?> cPicture;
 
     @FXML
     void createItem(MouseEvent event) throws IOException {
@@ -65,23 +65,6 @@ public class ItemController {
         stage.setScene(new Scene(root));
     }
 
-
-    DatabaseConnection connectNow = new DatabaseConnection();
-    Connection connectDB = connectNow.getConnection();
-
-    String connectQuery = "";
-
-    try {
-        Statement statement = connectDB.createStatement();
-        ResultSet queryOutput = statement.executeQuery(connectQuery);
-
-        while (queryOutput.next()) {
-            itemTable.(queryOutput.getString("item"));
-        }
-
-    } catch (Exception e){
-        e.printStackTrace();
-    }
 
 
 }
