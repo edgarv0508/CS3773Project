@@ -77,6 +77,12 @@ public class UserController {
         }
     }
 
+        void modUser(ActionEvent event) throws IOException{
+
+
+
+
+        }
 
 
 

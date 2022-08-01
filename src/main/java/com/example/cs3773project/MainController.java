@@ -58,4 +58,13 @@ public class MainController {
         window.show();
     }
 
+    @FXML
+    public void action2(ActionEvent event) throws IOException { //method to load modify-user-view fxml on action
+        Main = FXMLLoader.load(getClass().getResource("modify-user-view.fxml"));
+        Scene scene = new Scene(Main);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
 }
