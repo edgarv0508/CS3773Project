@@ -1,7 +1,6 @@
 package com.example.cs3773project;
 
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /*
@@ -11,17 +10,18 @@ import javafx.beans.property.SimpleStringProperty;
  */
 
 //The Order class control get the data from database and stores it in a variable to be used
-public class Order {
+public class currentOrders {
     //SimpleStringProperty variable for order details
     final private SimpleStringProperty  orderDate, customerName, status;
     final private SimpleDoubleProperty amount;
 
     //Order method that stores data to variables
-    public Order(String oDate, String cName, Double amt, String sts){
+    public currentOrders(String oDate, String cName, Double amt, String sts){
         this.orderDate = new SimpleStringProperty(oDate);
         this.customerName = new SimpleStringProperty(cName);
         this.amount = new SimpleDoubleProperty(amt);
         this.status = new SimpleStringProperty(sts);
+        System.out.println(this.orderDate);
 
     }
 
@@ -86,4 +86,5 @@ public class Order {
                 ", status=" + status +
                 '}';
     }
+
 }

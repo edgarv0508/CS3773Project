@@ -9,7 +9,7 @@
    <content>
       <AnchorPane prefHeight="401.0" prefWidth="600.0">
          <children>
-            <Label layoutX="39.0" layoutY="23.0" prefHeight="40.0" prefWidth="354.0" text="Currently Placed Orders">
+            <Label layoutX="39.0" layoutY="23.0" prefHeight="40.0" prefWidth="354.0" text="Orders History">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
@@ -22,7 +22,8 @@
                   <TableColumn fx:id="statusCol" prefWidth="124.0" text="Delivery Status" />
               </columns>
             </TableView>
-            <Button fx:id="orderHistory" layoutX="482.0" layoutY="31.0" mnemonicParsing="false" onAction="#goOrderHistory" text="History" />
+            <Button fx:id="orderHistory" layoutX="439.0" layoutY="31.0" mnemonicParsing="false" onAction="#goOrderHistory" text="Current Orders" />
+            <Button fx:id="orderHistory1" layoutY="2.0" mnemonicParsing="false" onAction="#goOrderHistory" text="Home" />
          </children>
       </AnchorPane>
    </content>

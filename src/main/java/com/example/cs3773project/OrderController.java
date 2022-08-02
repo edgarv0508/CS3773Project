@@ -2,18 +2,27 @@ package com.example.cs3773project;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ScrollPane;
+import javafx.stage.Stage;
 /*
 * Isaac Nguyen rrg053
 * CS 3773 Software Engineering
@@ -24,38 +33,65 @@ import javafx.scene.control.ScrollPane;
 public class OrderController implements Initializable {
     //Table column variables to set values to table
     @FXML
-    private TableColumn<Order, String>  orderDateCol, customerNameCol, statusCol;
+    private TableColumn<currentOrders, String>  orderDateCol, customerNameCol, statusCol;
     @FXML
-    private TableColumn<Order, Double>amountCol;
+    private TableColumn<currentOrders, Double>amountCol;
     //TableView to hold order data
     @FXML
-    private TableView<Order> tableView;
+    private TableView<currentOrders> tableView;
     //Scroll Pane to allow for scrolling if number of order exceeds page limit
     @FXML
     private ScrollPane currentOrderPane;
 
+    @FXML
+    private Button orderHistory;
     public static String SORT_BY_ORDER_DATE = "ORDER_DATE";
     public static String SORT_BY_CUSTOMER = "CUSTOMER";
     public static String SORT_BY_AMOUNT = "AMOUNT";
 
+    @FXML
+    void goOrderHistory(ActionEvent event) throws IOException {
+        Stage stage = (Stage) orderHistory.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("order-view.fxml"));
+        stage.setTitle("Orders");
+        stage.setScene(new Scene(root));
+    }
+
     //Initialize function that displays table view data when scene opens up
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         //Observable List for order information
-        final ObservableList<Order> info = FXCollections.observableArrayList(
-            new Order( "October 10, 2022", "Isaac Nguyen", 1.11, "Not Delivered"),
-                new Order("July 26, 2022", "Isaac Nguyen", 1.11, "Delivered")
-        );
+        ObservableList<currentOrders> oList = FXCollections.observableArrayList();
+
+        final String DB_URL = "jdbc:mysql://34.174.229.178/myshop";
+        final String USERNAME = "root";
+        final String PASSWORD = "cs3773";
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            ResultSet rs = conn.createStatement().executeQuery("select * from myshop.ordersList");
+
+            while (rs.next()) {
+                oList.add(new currentOrders(rs.getString("orderDate"), rs.getString("Customer"), rs.getDouble("orderAmount"), rs.getString("DeliveryStatus")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         //Value from database are set to their respective table columns
-        orderDateCol.setCellValueFactory(new PropertyValueFactory<Order, String>("orderDate"));
-        customerNameCol.setCellValueFactory(new PropertyValueFactory<Order, String>("customerName"));
-        amountCol.setCellValueFactory(new PropertyValueFactory<Order, Double>("amount"));
-        statusCol.setCellValueFactory(new PropertyValueFactory<Order, String>("status"));
+        orderDateCol.setCellValueFactory(new PropertyValueFactory<currentOrders, String>("orderDate"));
+        customerNameCol.setCellValueFactory(new PropertyValueFactory<currentOrders, String>("customerName"));
+        amountCol.setCellValueFactory(new PropertyValueFactory<currentOrders, Double>("amount"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<currentOrders, String>("status"));
+        //oList = orderImport.getDataOrders();
 
         // data information on table view
-        tableView.setItems(info);
+        tableView.setItems(oList);
         //disable editing the table
         tableView.setSelectionModel(null);
         orderDateCol.setSortable(false);
@@ -63,11 +99,11 @@ public class OrderController implements Initializable {
         amountCol.setSortable(false);
     }
 
-    private void sortHistoryOrders(ObservableList<Order> orders, String sortColumn, boolean isAsc) {
+    private void sortHistoryOrders(ObservableList<currentOrders> orders, String sortColumn, boolean isAsc) {
         if (SORT_BY_ORDER_DATE.equals(sortColumn)) {
-            Collections.sort(orders, new Comparator<Order>() {
+            Collections.sort(orders, new Comparator<currentOrders>() {
                 @Override
-                public int compare(Order o1, Order o2) {
+                public int compare(currentOrders o1, currentOrders o2) {
                     String orderDate1 = o1.getOrderDate();
                     String orderDate2 = o2.getOrderDate();
                     int sign = 1;
@@ -92,9 +128,9 @@ public class OrderController implements Initializable {
                 }
             });
         } else if (SORT_BY_CUSTOMER.equals(sortColumn)) {
-            Collections.sort(orders, new Comparator<Order>() {
+            Collections.sort(orders, new Comparator<currentOrders>() {
                 @Override
-                public int compare(Order o1, Order o2) {
+                public int compare(currentOrders o1, currentOrders o2) {
                     String customerName1 = o1.getCustomerName();
                     String customerName2 = o2.getCustomerName();
                     int sign = 1;
@@ -141,10 +177,10 @@ public class OrderController implements Initializable {
     }
 
     public static void main(String[] args) {
-        ObservableList<Order> info = FXCollections.observableArrayList(
-                new Order("July 25, 2022", "Isaac Nguyen", 3.11, "Delivered" ), //changed
-                new Order( "May 26, 2022", "Isaac Neo", 1.11, "Delivered"),    //changed
-                new Order( "August 26, 2022", "Feirie Juno", 2.11, "Delivered") //changed
+        ObservableList<currentOrders> info = FXCollections.observableArrayList(
+                new currentOrders("July 25, 2022", "Isaac Nguyen", 3.11, "Delivered" ), //changed
+                new currentOrders( "May 26, 2022", "Isaac Neo", 1.11, "Delivered"),    //changed
+                new currentOrders( "August 26, 2022", "Feirie Juno", 2.11, "Delivered") //changed
         );
         OrderController orderController = new OrderController();
         System.out.println("=============SORT_BY_ORDER_DATE");
