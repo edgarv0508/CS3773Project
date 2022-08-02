@@ -24,7 +24,9 @@ import javafx.scene.control.ScrollPane;
 public class OrderController implements Initializable {
     //Table column variables to set values to table
     @FXML
-    private TableColumn<Order, String> orderNumCol, orderDateCol, customerNameCol, amountCol, viewCol;
+    private TableColumn<Order, String>  orderDateCol, customerNameCol, statusCol;
+    @FXML
+    private TableColumn<Order, Double>amountCol;
     //TableView to hold order data
     @FXML
     private TableView<Order> tableView;
@@ -42,26 +44,23 @@ public class OrderController implements Initializable {
 
         //Observable List for order information
         final ObservableList<Order> info = FXCollections.observableArrayList(
-            new Order("1", "July 26, 2022", "Isaac Nguyen", "$1.11", "view"),
-                new Order("2", "July 26, 2022", "Isaac Nguyen", "$1.11", "view")
+            new Order( "October 10, 2022", "Isaac Nguyen", 1.11, "Not Delivered"),
+                new Order("July 26, 2022", "Isaac Nguyen", 1.11, "Delivered")
         );
 
         //Value from database are set to their respective table columns
-        orderNumCol.setCellValueFactory(new PropertyValueFactory<Order, String>("orderNumber"));
         orderDateCol.setCellValueFactory(new PropertyValueFactory<Order, String>("orderDate"));
         customerNameCol.setCellValueFactory(new PropertyValueFactory<Order, String>("customerName"));
-        amountCol.setCellValueFactory(new PropertyValueFactory<Order, String>("amount"));
-        viewCol.setCellValueFactory(new PropertyValueFactory<Order, String>("view"));
+        amountCol.setCellValueFactory(new PropertyValueFactory<Order, Double>("amount"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<Order, String>("status"));
 
         // data information on table view
         tableView.setItems(info);
         //disable editing the table
         tableView.setSelectionModel(null);
-        orderNumCol.setSortable(false);
         orderDateCol.setSortable(false);
         customerNameCol.setSortable(false);
         amountCol.setSortable(false);
-        viewCol.setSortable(false);
     }
 
     private void sortHistoryOrders(ObservableList<Order> orders, String sortColumn, boolean isAsc) {
@@ -113,7 +112,7 @@ public class OrderController implements Initializable {
                 }
             });
         }else if (SORT_BY_AMOUNT.equals(sortColumn)) {
-            Collections.sort(orders, new Comparator<Order>() {
+           /* Collections.sort(orders, new Comparator<Order>() {
                 @Override
                 public int compare(Order o1, Order o2) {
                     String amount1 = o1.getAmount();
@@ -137,15 +136,15 @@ public class OrderController implements Initializable {
                     }
                     return (amount1.compareTo(amount2)) * sign;
                 }
-            });
+            }); */
         }
     }
 
     public static void main(String[] args) {
         ObservableList<Order> info = FXCollections.observableArrayList(
-                new Order("1", "July 25, 2022", "Isaac Nguyen", "$3.11", "view"),
-                new Order("2", "May 26, 2022", "Isaac Neo", "$1.11", "view"),
-                new Order("2", "August 26, 2022", "Feirie Juno", "$2.11", "view")
+                new Order("July 25, 2022", "Isaac Nguyen", 3.11, "Delivered" ), //changed
+                new Order( "May 26, 2022", "Isaac Neo", 1.11, "Delivered"),    //changed
+                new Order( "August 26, 2022", "Feirie Juno", 2.11, "Delivered") //changed
         );
         OrderController orderController = new OrderController();
         System.out.println("=============SORT_BY_ORDER_DATE");

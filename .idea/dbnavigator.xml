@@ -29,7 +29,6 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a959e689-1b51-4ee1-983d-20429c9d641d">
-      <console name="cs3773_Project" type="STANDARD" schema="" session="Main" />
       <console name="MySQL Connection" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
@@ -89,12 +88,12 @@
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="localhost" />
+          <host value="34.174.229.178" />
           <port value="3306" />
           <database value="myshop" />
           <type value="USER_PASSWORD" />
           <user value="root" />
-          <deprecated-pwd value="MTIzNA==" />
+          <deprecated-pwd value="Y3MzNzcz" />
         </database>
         <properties>
           <auto-commit value="false" />

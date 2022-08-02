@@ -1,5 +1,7 @@
 package com.example.cs3773project;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /*
@@ -11,32 +13,21 @@ import javafx.beans.property.SimpleStringProperty;
 //The Order class control get the data from database and stores it in a variable to be used
 public class Order {
     //SimpleStringProperty variable for order details
-    private SimpleStringProperty orderNumber, orderDate, customerName, amount, view;
+    final private SimpleStringProperty  orderDate, customerName, status;
+    final private SimpleDoubleProperty amount;
 
     //Order method that stores data to variables
-    public Order(String oNumber, String oDate, String cName, String amt, String view){
-        this.orderNumber = new SimpleStringProperty(oNumber);
+    public Order(String oDate, String cName, Double amt, String sts){
         this.orderDate = new SimpleStringProperty(oDate);
         this.customerName = new SimpleStringProperty(cName);
-        this.amount = new SimpleStringProperty(amt);
-        this.view = new SimpleStringProperty(view);
+        this.amount = new SimpleDoubleProperty(amt);
+        this.status = new SimpleStringProperty(sts);
 
     }
 
     /*
     * Getters and Setters for each variable
      */
-    public String getOrderNumber() {
-        return orderNumber.get();
-    }
-
-    public SimpleStringProperty orderNumberProperty() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber.set(orderNumber);
-    }
 
     public String getOrderDate() {
         return orderDate.get();
@@ -62,39 +53,37 @@ public class Order {
         this.customerName.set(customerName);
     }
 
-    public String getAmount() {
+    public String getStatus() {
+        return status.get();
+    }
+
+    public SimpleStringProperty statusProperty() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status.set(status);
+    }
+
+    public double getAmount() {
         return amount.get();
     }
 
-    public SimpleStringProperty amountProperty() {
+    public SimpleDoubleProperty amountProperty() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount.set(amount);
     }
-
-    public String getView() {
-        return view.get();
-    }
-
-    public SimpleStringProperty viewProperty() {
-        return view;
-    }
-
-    public void setView(String view) {
-        this.view.set(view);
-    }
-
 
     @Override
     public String toString() {
         return "Order{" +
-                "orderNumber=" + orderNumber +
                 ", orderDate=" + orderDate +
                 ", customerName=" + customerName +
                 ", amount=" + amount +
-                ", view=" + view +
+                ", status=" + status +
                 '}';
     }
 }

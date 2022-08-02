@@ -25,7 +25,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://34.174.229.178:3306/myshop?autoReconnect=true&useSSL=false", "root", "cs3773");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/myshop?autoReconnect=true&useSSL=false", "root", "1234");
             Statement statement = conn.createStatement();
         } catch (SQLException e){
             e.printStackTrace();

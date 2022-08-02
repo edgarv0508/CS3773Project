@@ -16,11 +16,10 @@
             </Label>
             <TableView fx:id="tableView" layoutX="39.0" layoutY="63.0" prefHeight="308.0" prefWidth="495.0" style="-fx-focus-color: transparent;">
               <columns>
-                <TableColumn fx:id="orderNumCol" prefWidth="75.0" text="Order #" />
-                <TableColumn fx:id="orderDateCol" prefWidth="131.0" text="Date" />
-                  <TableColumn fx:id="customerNameCol" prefWidth="145.0" text="Customer Name" />
-                  <TableColumn fx:id="amountCol" prefWidth="75.0" text="Total" />
-                  <TableColumn fx:id="viewCol" prefWidth="68.0" text="View" />
+                <TableColumn fx:id="orderDateCol" prefWidth="102.0" text="Date" />
+                  <TableColumn fx:id="customerNameCol" prefWidth="200.0" text="Customer Name" />
+                  <TableColumn fx:id="amountCol" prefWidth="68.0" text="Total" />
+                  <TableColumn fx:id="statusCol" prefWidth="124.0" text="Delivery Status" />
               </columns>
             </TableView>
          </children>
