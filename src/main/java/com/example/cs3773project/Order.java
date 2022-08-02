@@ -87,8 +87,14 @@ public class Order {
     }
 
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderNumber=" + orderNumber +
+                ", orderDate=" + orderDate +
+                ", customerName=" + customerName +
+                ", amount=" + amount +
+                ", view=" + view +
+                '}';
+    }
 }
