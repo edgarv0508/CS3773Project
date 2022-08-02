@@ -16,5 +16,6 @@
           <TableColumn fx:id="cPrice" onEditCommit="#changePriceCellEvent" prefWidth="103.0" text="Price" />
         </columns>
       </TableView>
+      <Button fx:id="discount" layoutX="4.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#createCode" text="Create Discount Code" />
    </children>
 </AnchorPane>

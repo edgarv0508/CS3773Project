@@ -25,13 +25,13 @@ import java.util.ResourceBundle;
 public class ItemController implements Initializable {
 
     @FXML
-    private Button modify;
-
-    @FXML
     private Button create;
 
     @FXML
     private Button home;
+
+    @FXML
+    private Button discount;
 
 
     @FXML
@@ -49,6 +49,13 @@ public class ItemController implements Initializable {
     @FXML
     private static TextField itemSearch;
 
+    @FXML
+    void createCode(MouseEvent event) throws IOException {
+        Stage stage = (Stage) home.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("discountCode-create.fxml"));
+        stage.setTitle("Main View");
+        stage.setScene(new Scene(root));
+    }
 
     @FXML
     void returnHome(MouseEvent event) throws IOException {
@@ -141,7 +148,7 @@ public class ItemController implements Initializable {
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt= conn.createStatement();
-            String sql = "UPDATE itemList SET amount = ? WHERE amount = '" +amount+ "'" ;
+            String sql = "UPDATE itemList SET amount = ? WHERE item = '" +item+ "'" ;
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, amount);
 
@@ -173,7 +180,7 @@ public class ItemController implements Initializable {
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt= conn.createStatement();
-            String sql = "UPDATE itemList SET price = ? WHERE price = '" +price+ "'" ;
+            String sql = "UPDATE itemList SET price = ? WHERE item = '" +item+ "'" ;
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, price);
 

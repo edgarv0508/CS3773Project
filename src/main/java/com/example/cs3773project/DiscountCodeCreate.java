@@ -16,16 +16,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
-public class ItemCreate {
+public class DiscountCodeCreate {
 
     @FXML
-    private TextField tfAmount;
+    private TextField tfCode;
 
     @FXML
-    private TextField tfItem;
+    private TextField tfPercent;
 
-    @FXML
-    private TextField tfPrice;
 
     @FXML
     private Button home;
@@ -35,10 +33,9 @@ public class ItemCreate {
 
     @FXML
     void create(MouseEvent event) {
-        registerItem();
-        tfItem.clear();
-        tfAmount.clear();
-        tfPrice.clear();
+        registerCode();
+        tfCode.clear();
+        tfPercent.clear();
     }
 
     @FXML
@@ -49,17 +46,17 @@ public class ItemCreate {
         stage.setScene(new Scene(root));
     }
 
-    public void registerItem(){
-        String item = tfItem.getText();
-        String amount = tfAmount.getText();
-        String price = tfPrice.getText();
+    public void registerCode(){
+        String code = tfCode.getText();
+        String percent = tfPercent.getText();
+;
 
-        items = addItemToDatabase(item, amount, price);
+        discountCode = addCodeToDatabase(code, percent);
     }
 
-    public Items items;
-    private Items addItemToDatabase(String item, String amount, String price){
-        Items items = null;
+    public DiscountCode discountCode;
+    private DiscountCode addCodeToDatabase(String code, String percent){
+        DiscountCode discountCode = null;
         final String DB_URL = "jdbc:mysql://34.174.229.178/myshop";
         final String USERNAME = "root";
         final String PASSWORD = "cs3773";
@@ -68,18 +65,17 @@ public class ItemCreate {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt= conn.createStatement();
-            String sql = "REPLACE INTO itemList (item, amount, price)" + "VALUES (?, ?, ?)";
+            String sql = "REPLACE INTO discountCode (code, percent)" + "VALUES (?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, item);
-            preparedStatement.setString(2, amount);
-            preparedStatement.setString(3, price);
+            preparedStatement.setString(1, code);
+            preparedStatement.setString(2, percent);
+
 
             int addedRows = preparedStatement.executeUpdate();
             if(addedRows > 0){
-                items = new Items(item, price, amount);
-                items.item = item;
-                items.amount = amount;
-                items.price = price;
+                discountCode = new DiscountCode(code, percent);
+                discountCode.code = code;
+                discountCode.percent = percent;
 
             }
 
@@ -90,8 +86,7 @@ public class ItemCreate {
             e.printStackTrace();
         }
 
-        return items;
+        return discountCode;
     }
 
 }
-
