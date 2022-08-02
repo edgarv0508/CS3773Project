@@ -76,14 +76,5 @@ public class currentOrders {
         this.amount.set(amount);
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                ", orderDate=" + orderDate +
-                ", customerName=" + customerName +
-                ", amount=" + amount +
-                ", status=" + status +
-                '}';
-    }
 
 }

@@ -154,7 +154,7 @@ public class OrderHistoryController implements Initializable {
                 }
             });
         }else if (SORT_BY_AMOUNT.equals(sortColumn)) {
-           /* Collections.sort(orders, new Comparator<Order>() {
+           /*Collections.sort(orders, new Comparator<Order>() {
                 @Override
                 public int compare(Order o1, Order o2) {
                     String amount1 = o1.getAmount();
@@ -178,7 +178,7 @@ public class OrderHistoryController implements Initializable {
                     }
                     return (amount1.compareTo(amount2)) * sign;
                 }
-            }); */
+            });*/
         }
     }
 

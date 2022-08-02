@@ -10,10 +10,7 @@ import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,7 +26,7 @@ import javafx.stage.Stage;
 * August 3, 2022
 */
 
-//The OrderController class control the current order placed
+//The currentOrderController class control the current order placed
 public class currentOrderController implements Initializable {
     //Table column variables to set values to table
     @FXML
@@ -42,11 +39,11 @@ public class currentOrderController implements Initializable {
     //Scroll Pane to allow for scrolling if number of order exceeds page limit
     @FXML
     private ScrollPane currentOrderPane;
-
+    //button go home and order history scene
     @FXML
     private Button orderHistory, home;
 
-
+    // goOrderHistory take you to the order history screen
     @FXML
     void goOrderHistory(ActionEvent event) throws IOException {
         Stage stage = (Stage) orderHistory.getScene().getWindow();
@@ -54,7 +51,7 @@ public class currentOrderController implements Initializable {
         stage.setTitle("Orders");
         stage.setScene(new Scene(root));
     }
-
+    //goHome take you to the home screen
     @FXML
     void goHome(ActionEvent event) throws IOException {
         Stage stage = (Stage) home.getScene().getWindow();
@@ -69,6 +66,7 @@ public class currentOrderController implements Initializable {
         //Observable List for order information
         ObservableList<currentOrders> cList = FXCollections.observableArrayList();
 
+        //Connect to database and retrieve data
         final String DB_URL = "jdbc:mysql://34.174.229.178/myshop";
         final String USERNAME = "root";
         final String PASSWORD = "cs3773";
@@ -83,6 +81,7 @@ public class currentOrderController implements Initializable {
             ResultSet rs = conn.createStatement().executeQuery("select * from myshop.ordersList");
 
             while (rs.next()) {
+                //check if order had Not been delivered and place in Observable list
                 System.out.println(rs.getString("DeliveryStatus"));
                 if(!rs.getString("DeliveryStatus").equals("Delivered")) {
                     cList.add(new currentOrders(rs.getString("orderDate"), rs.getString("Customer"), rs.getDouble("orderAmount"), rs.getString("DeliveryStatus")));
@@ -102,10 +101,10 @@ public class currentOrderController implements Initializable {
         // data information on table view
         tableView.setItems(cList);
         //disable editing the table
-        tableView.setSelectionModel(null);
-        orDateCol.setSortable(false);
-        custNameCol.setSortable(false);
-        orAmountCol.setSortable(false);
+        //tableView.setSelectionModel(null);
+        //orDateCol.setSortable(false);
+        //custNameCol.setSortable(false);
+       //orAmountCol.setSortable(false);
     }
 
 }
