@@ -73,7 +73,7 @@ public class ItemModify {
 
             int addedRows = preparedStatement.executeUpdate();
             if(addedRows > 0){
-                items = new Items();
+                items = new Items(item, amount, price);
                 items.item = item;
                 items.amount = amount;
                 items.price = price;

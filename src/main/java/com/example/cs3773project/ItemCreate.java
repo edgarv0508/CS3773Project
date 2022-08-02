@@ -72,7 +72,7 @@ public class ItemCreate {
 
             int addedRows = preparedStatement.executeUpdate();
             if(addedRows > 0){
-                items = new Items();
+                items = new Items(item, price, amount);
                 items.item = item;
                 items.amount = amount;
                 items.price = price;
