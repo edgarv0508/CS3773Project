@@ -10,12 +10,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
+import java.sql.*;
+import java.util.Vector;
 
 public class UserController {
 
@@ -33,6 +38,20 @@ public class UserController {
 
     @FXML
     private Button BackButton;
+
+    @FXML
+    private TextField IDBox;
+
+    @FXML
+    private Label label;
+
+    private static final String DB_URL = "jdbc:mysql://34.174.229.178/myshop";
+    private static final String USERNAME = "root";
+    private final String PASSWORD = "cs3773";
+
+    Connection conn = null;
+    PreparedStatement pst = null;
+
 
     @FXML
     void goHome(ActionEvent event) throws IOException {  //method to return to main screen
@@ -62,31 +81,71 @@ public class UserController {
             err.setContentText("Please enter desired password.");
             err.showAndWait();
         } else {
-            /*
-                DATABASE CODE HERE
-                ADD USERS NAME AND PASSWORD
-                TO DATABASE
-             */
+            try {
+                conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);  //Database connection
+                String userData = "INSERT INTO userList(userName, userPassword) VALUES(?,?)";
+                pst = conn.prepareStatement(userData);
+                pst.setString(1, NameBox.getText());
+                pst.setString(2, PassBox.getText());
+
+                pst.execute();
+
+                pst.close();
+
+            } catch (Exception e1) {
+                label.setText("SQL ERROR");
+                System.err.println(e1);
+            }
             Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);  //success message
-            confirmation.setTitle("Confirmation Message");
-            confirmation.setHeaderText("Confirmed");
-            confirmation.setContentText("Your account has been created.");
+            confirmation.setTitle("Success");
+            confirmation.setHeaderText("Your account has been successfully created.");
+            confirmation.setContentText("Return to main screen.");
             confirmation.showAndWait();
             PassBox.clear();
             NameBox.clear();
         }
     }
 
-        void modUser(ActionEvent event) throws IOException{
+    @FXML
+    void modUser(ActionEvent event) throws IOException { //method to update user info based on ID number
+        try {
+            conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            String userData = "UPDATE userList set userName=?, userPassword=? where userID=?";
+            pst = conn.prepareStatement(userData);
+
+            pst.setString(1, NameBox.getText());
+            pst.setString(2, PassBox.getText());
+            pst.setString(3, IDBox.getText());
 
 
+            pst.executeUpdate();
 
+            pst.close();
 
+        }catch (Exception e1){
+            label.setText("SQL ERROR");
+            System.err.println(e1);
         }
-
-
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);  //success message
+        confirmation.setTitle("Confirmed");
+        confirmation.setHeaderText("Your account has been updated.");
+        confirmation.setContentText("Return to main screen.");
+        confirmation.showAndWait();
+        PassBox.clear();
+        NameBox.clear();
 
     }
+
+
+
+
+
+
+
+
+
+
+}
 
 
 

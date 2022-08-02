@@ -14,7 +14,6 @@
        <Label fx:id="welcomeText" />
        <Button fx:id="order" mnemonicParsing="false" onAction="#goOrders" text="Orders" />
       <Button fx:id="NewUser" mnemonicParsing="false" onAction="#action1" text="New User" />
-       <Button fx:id="modUserButton" onAction="#action2" text="Modify User" />
       <Button fx:id="item" mnemonicParsing="false" onMouseClicked="#goItems" text="Items" />
    </children>
 </VBox>
