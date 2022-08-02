@@ -8,8 +8,8 @@
    <children>
       <Button layoutX="67.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#create" text="Create" />
       <Button layoutX="72.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#goBack" text="Back" />
-      <TextField fx:id="tfItem" layoutX="373.0" layoutY="44.0" text="Item" />
-      <TextField fx:id="tfPrice" layoutX="373.0" layoutY="111.0" text="Price" />
-      <TextField fx:id="tfAmount" layoutX="373.0" layoutY="200.0" text="Amount" />
+      <TextField fx:id="tfItem" layoutX="373.0" layoutY="44.0" promptText="item" />
+      <TextField fx:id="tfPrice" layoutX="373.0" layoutY="111.0" promptText="price" />
+      <TextField fx:id="tfAmount" layoutX="373.0" layoutY="200.0" promptText="amount" />
    </children>
 </AnchorPane>

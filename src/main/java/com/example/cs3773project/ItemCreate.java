@@ -50,22 +50,21 @@ public class ItemCreate {
         String amount = tfAmount.getText();
         String price = tfPrice.getText();
 
-
         items = addItemToDatabase(item, amount, price);
     }
 
     public Items items;
     private Items addItemToDatabase(String item, String amount, String price){
         Items items = null;
-        final String DB_URL = "jdbc:mysql://localhost/myshop";
+        final String DB_URL = "jdbc:mysql://34.174.229.178/myshop";
         final String USERNAME = "root";
-        final String PASSWORD = "1234";
+        final String PASSWORD = "cs3773";
 
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt= conn.createStatement();
-            String sql = "INSERT INTO itemList (item, amount, price)" + "VALUES (?, ?, ?)";
+            String sql = "REPLACE INTO itemList (item, amount, price)" + "VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, item);
             preparedStatement.setString(2, amount);
@@ -91,3 +90,4 @@ public class ItemCreate {
     }
 
 }
+

@@ -12,7 +12,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
 public class ItemController {
 
@@ -30,16 +32,14 @@ public class ItemController {
     private TableView<Items> itemTable;
 
     @FXML
-    private TableColumn<Items, ?> cItem;
+    private TableColumn<Items, String> cItem;
 
     @FXML
-    private TableColumn<Items, ?> cAmount;
+    private TableColumn<Items, String> cAmount;
 
     @FXML
-    private TableColumn<Items, ?> cPrice;
+    private TableColumn<Items, String> cPrice;
 
-    @FXML
-    private TableColumn<Items, ?> cPicture;
 
     @FXML
     void createItem(MouseEvent event) throws IOException {
@@ -66,7 +66,11 @@ public class ItemController {
     }
 
 
+    public void initialize(URL url, ResourceBundle rb) {
+        //cItem.setCellValueFactory(new PropertyValue<Items, String>("item"));
+    }
 
 }
+
 
 
