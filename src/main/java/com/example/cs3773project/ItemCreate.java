@@ -37,8 +37,8 @@ public class ItemCreate {
     void create(MouseEvent event) {
         registerItem();
         tfItem.clear();
-        tfAmount.clear();
         tfPrice.clear();
+        tfAmount.clear();
     }
 
     @FXML
@@ -51,14 +51,14 @@ public class ItemCreate {
 
     public void registerItem(){
         String item = tfItem.getText();
-        String amount = tfAmount.getText();
         String price = tfPrice.getText();
+        String amount = tfAmount.getText();
 
-        items = addItemToDatabase(item, amount, price);
+        items = addItemToDatabase(item, price, amount);
     }
 
     public Items items;
-    private Items addItemToDatabase(String item, String amount, String price){
+    private Items addItemToDatabase(String item, String price, String amount){
         Items items = null;
         final String DB_URL = "jdbc:mysql://34.174.229.178/myshop";
         final String USERNAME = "root";
@@ -68,18 +68,18 @@ public class ItemCreate {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt= conn.createStatement();
-            String sql = "REPLACE INTO itemList (item, amount, price)" + "VALUES (?, ?, ?)";
+            String sql = "REPLACE INTO itemList (item, price, amount)" + "VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, item);
-            preparedStatement.setString(2, amount);
-            preparedStatement.setString(3, price);
+            preparedStatement.setString(2, price);
+            preparedStatement.setString(3, amount);
 
             int addedRows = preparedStatement.executeUpdate();
             if(addedRows > 0){
                 items = new Items(item, price, amount);
                 items.item = item;
-                items.amount = amount;
                 items.price = price;
+                items.amount = amount;
 
             }
 

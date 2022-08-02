@@ -12,8 +12,8 @@
       <TableView fx:id="itemTable" layoutX="223.0" layoutY="114.0" prefHeight="219.0" prefWidth="341.0">
         <columns>
           <TableColumn fx:id="cItem" onEditCommit="#changeItemCellEvent" prefWidth="121.0" text="Item" />
-            <TableColumn fx:id="cAmount" onEditCommit="#changeAmountCellEvent" prefWidth="116.0" text="Amount" />
           <TableColumn fx:id="cPrice" onEditCommit="#changePriceCellEvent" prefWidth="103.0" text="Price" />
+            <TableColumn fx:id="cAmount" onEditCommit="#changeAmountCellEvent" prefWidth="116.0" text="Amount" />
         </columns>
       </TableView>
       <Button fx:id="discount" layoutX="4.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#createCode" text="Create Discount Code" />

@@ -77,10 +77,10 @@ public class ItemController implements Initializable {
         Items itemSelected = itemTable.getSelectionModel().getSelectedItem();
         itemSelected.setItem(editedCell.getNewValue().toString());
         String item = cItem.getText();
-        String amount = cAmount.getText();
         String price = cPrice.getText();
+        String amount = cAmount.getText();
 
-        items = modifyItem(item, amount, price);
+        items = modifyItem(item, price, amount);
 
     }
 
@@ -88,10 +88,10 @@ public class ItemController implements Initializable {
         Items itemSelected = itemTable.getSelectionModel().getSelectedItem();
         itemSelected.setAmount(editedCell.getNewValue().toString());
         String item = cItem.getText();
-        String amount = cAmount.getText();
         String price = cPrice.getText();
+        String amount = cAmount.getText();
 
-        items = modifyAmount(item, amount, price);
+        items = modifyAmount(item, price, amount);
 
     }
 
@@ -99,15 +99,15 @@ public class ItemController implements Initializable {
         Items itemSelected = itemTable.getSelectionModel().getSelectedItem();
         itemSelected.setPrice(editedCell.getNewValue().toString());
         String item = cItem.getText();
-        String amount = cAmount.getText();
         String price = cPrice.getText();
+        String amount = cAmount.getText();
 
-        items = modifyPrice(item, amount, price);
+        items = modifyPrice(item, price, amount);
 
     }
 
     public Items items;
-    private Items modifyItem(String item, String amount, String price){
+    private Items modifyItem(String item, String price, String amount){
         Items items = null;
         final String DB_URL = "jdbc:mysql://34.174.229.178/myshop";
         final String USERNAME = "root";
@@ -116,17 +116,20 @@ public class ItemController implements Initializable {
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt= conn.createStatement();
-            String sql = "UPDATE itemList SET item = ? WHERE item = '" +item+ "'" ;
+            String sql = "UPDATE itemList SET item=?, ";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, item);
+            preparedStatement.setString(2, price);
+            preparedStatement.setString(3, amount);
 
 
             int addedRows = preparedStatement.executeUpdate();
             if(addedRows > 0){
                 items = new Items(item, price, amount);
                 items.item = item;
-                items.amount = amount;
                 items.price = price;
+                items.amount = amount;
+
 
             }
 
@@ -157,8 +160,8 @@ public class ItemController implements Initializable {
             if(addedRows > 0){
                 items = new Items(item, price, amount);
                 items.item = item;
-                items.amount = amount;
                 items.price = price;
+                items.amount = amount;
 
             }
 
@@ -171,7 +174,7 @@ public class ItemController implements Initializable {
         return items;
     }
 
-    private Items modifyPrice(String item, String amount, String price){
+    private Items modifyPrice(String item, String price, String amount){
         Items items = null;
         final String DB_URL = "jdbc:mysql://34.174.229.178/myshop";
         final String USERNAME = "root";
@@ -189,8 +192,8 @@ public class ItemController implements Initializable {
             if(addedRows > 0){
                 items = new Items(item, price, amount);
                 items.item = item;
-                items.amount = amount;
                 items.price = price;
+                items.amount = amount;
 
             }
 
