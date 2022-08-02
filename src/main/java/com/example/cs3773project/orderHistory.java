@@ -10,22 +10,23 @@ import javafx.beans.property.SimpleStringProperty;
  */
 
 //The Order class control get the data from database and stores it in a variable to be used
-public class currentOrders {
+public class orderHistory {
     //SimpleStringProperty variable for order details
     final private SimpleStringProperty  orderDate, customerName, status;
     final private SimpleDoubleProperty amount;
 
     //Order method that stores data to variables
-    public currentOrders(String oDate, String cName, Double amt, String sts){
+    public orderHistory(String oDate, String cName, Double amt, String sts){
         this.orderDate = new SimpleStringProperty(oDate);
         this.customerName = new SimpleStringProperty(cName);
         this.amount = new SimpleDoubleProperty(amt);
         this.status = new SimpleStringProperty(sts);
+        System.out.println(this.orderDate);
 
     }
 
     /*
-    * Getters and Setters for each variable
+     * Getters and Setters for each variable
      */
 
     public String getOrderDate() {

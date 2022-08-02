@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane fx:id="currentOrderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs3773project.OrderController">
+<ScrollPane fx:id="currentOrderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs3773project.currentOrderController">
    <content>
       <AnchorPane prefHeight="401.0" prefWidth="600.0">
          <children>
@@ -16,13 +16,14 @@
             </Label>
             <TableView fx:id="tableView" layoutX="39.0" layoutY="63.0" prefHeight="308.0" prefWidth="495.0" style="-fx-focus-color: transparent;">
               <columns>
-                <TableColumn fx:id="orderDateCol" prefWidth="102.0" text="Date" />
-                  <TableColumn fx:id="customerNameCol" prefWidth="200.0" text="Customer Name" />
-                  <TableColumn fx:id="amountCol" prefWidth="68.0" text="Total" />
-                  <TableColumn fx:id="statusCol" prefWidth="124.0" text="Delivery Status" />
+                <TableColumn fx:id="orDateCol" prefWidth="102.0" text="Date" />
+                  <TableColumn fx:id="custNameCol" prefWidth="200.0" text="Customer Name" />
+                  <TableColumn fx:id="orAmountCol" prefWidth="68.0" text="Total" />
+                  <TableColumn fx:id="orStatusCol" prefWidth="124.0" text="Delivery Status" />
               </columns>
             </TableView>
             <Button fx:id="orderHistory" layoutX="482.0" layoutY="31.0" mnemonicParsing="false" onAction="#goOrderHistory" text="History" />
+            <Button fx:id="home" mnemonicParsing="false" onAction="#goHome" text="Home" />
          </children>
       </AnchorPane>
    </content>

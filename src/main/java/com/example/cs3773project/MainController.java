@@ -29,7 +29,7 @@ public class MainController {
     @FXML
     void goOrders(ActionEvent event) throws IOException {
         Stage stage = (Stage) order.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("order-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("currentOrder-view.fxml"));
         stage.setTitle("Orders");
         stage.setScene(new Scene(root));
     }
