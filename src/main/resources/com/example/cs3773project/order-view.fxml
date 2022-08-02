@@ -9,6 +9,11 @@
    <content>
       <AnchorPane prefHeight="401.0" prefWidth="600.0">
          <children>
+            <Label layoutX="39.0" layoutY="23.0" text="Current Orders">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
             <TableView fx:id="tableView" layoutX="39.0" layoutY="63.0" prefHeight="308.0" prefWidth="495.0" style="-fx-focus-color: transparent;">
               <columns>
                 <TableColumn fx:id="orderNumCol" prefWidth="75.0" text="Order #" />
@@ -18,11 +23,6 @@
                   <TableColumn fx:id="viewCol" prefWidth="68.0" text="View" />
               </columns>
             </TableView>
-            <Label layoutX="39.0" layoutY="23.0" text="Current Orders">
-               <font>
-                  <Font name="System Bold" size="28.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </content>
