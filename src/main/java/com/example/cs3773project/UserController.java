@@ -5,22 +5,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+
 import java.io.IOException;
 import java.sql.*;
-import java.util.Vector;
 
 public class UserController {
 
@@ -108,32 +104,42 @@ public class UserController {
 
     @FXML
     void modUser(ActionEvent event) throws IOException { //method to update user info based on ID number
-        try {
-            conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            String userData = "UPDATE userList set userName=?, userPassword=? where userID=?";
-            pst = conn.prepareStatement(userData);
+        String ID = IDBox.getText().toString();
+        if (ID.isEmpty()) {
+            Alert err = new Alert(Alert.AlertType.ERROR);       //fail message - no ID entered
+            err.setTitle("Error");
+            err.setHeaderText("Must enter ID number");
+            err.setContentText("Please enter which ID to update.");
+            err.showAndWait();
+        } else {
 
-            pst.setString(1, NameBox.getText());
-            pst.setString(2, PassBox.getText());
-            pst.setString(3, IDBox.getText());
+            try {
+                conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+                String userData = "UPDATE userList set userName=?, userPassword=? where userID=?";
+                pst = conn.prepareStatement(userData);
+
+                pst.setString(1, NameBox.getText());
+                pst.setString(2, PassBox.getText());
+                pst.setString(3, IDBox.getText());
 
 
-            pst.executeUpdate();
+                pst.executeUpdate();
 
-            pst.close();
+                pst.close();
 
-        }catch (Exception e1){
-            label.setText("SQL ERROR");
-            System.err.println(e1);
+            } catch (Exception e1) {
+                label.setText("SQL ERROR");
+                System.err.println(e1);
+            }
+            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);  //success message
+            confirmation.setTitle("Confirmed");
+            confirmation.setHeaderText("Your account has been updated.");
+            confirmation.setContentText("Return to main screen.");
+            confirmation.showAndWait();
+            PassBox.clear();
+            NameBox.clear();
+
         }
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);  //success message
-        confirmation.setTitle("Confirmed");
-        confirmation.setHeaderText("Your account has been updated.");
-        confirmation.setContentText("Return to main screen.");
-        confirmation.showAndWait();
-        PassBox.clear();
-        NameBox.clear();
-
     }
 
 
