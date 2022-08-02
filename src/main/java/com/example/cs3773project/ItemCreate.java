@@ -1,5 +1,6 @@
 package com.example.cs3773project;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,7 +28,7 @@ public class ItemCreate {
     private TextField tfPrice;
 
     @FXML
-    private Button goBack;
+    private Button home;
 
     @FXML
     private Button create;
@@ -38,8 +39,8 @@ public class ItemCreate {
     }
 
     @FXML
-    void goBack(MouseEvent event) throws IOException {
-        Stage stage = (Stage) goBack.getScene().getWindow();
+    void goBack(ActionEvent event) throws IOException {
+        Stage stage = (Stage) home.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("item-view.fxml"));
         stage.setTitle("Items");
         stage.setScene(new Scene(root));
