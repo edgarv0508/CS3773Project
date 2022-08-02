@@ -16,10 +16,10 @@ import java.io.IOException;
 public class MainController {
 
     @FXML
-    private Button item, order, user;
+    private Button item, order;
 
     @FXML
-    void goItems(MouseEvent event) throws IOException{
+    void goItems(ActionEvent event) throws IOException {
         Stage stage = (Stage) item.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("item-view.fxml"));
         stage.setTitle("Items");
@@ -31,14 +31,6 @@ public class MainController {
         Stage stage = (Stage) order.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("order-view.fxml"));
         stage.setTitle("Orders");
-        stage.setScene(new Scene(root));
-    }
-
-    @FXML
-    void goUser(MouseEvent event) throws IOException{
-        Stage stage = (Stage) user.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("user-view.fxml"));
-        stage.setTitle("Users");
         stage.setScene(new Scene(root));
     }
 
