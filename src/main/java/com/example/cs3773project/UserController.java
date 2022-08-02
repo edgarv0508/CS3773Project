@@ -62,6 +62,7 @@ public class UserController {
     void addUserInfo(ActionEvent event) throws IOException {  //Method to add user info to database
         String userName = NameBox.getText().toString();
         String pass = PassBox.getText().toString();
+        int id = Integer.parseInt(IDBox.getText());
 
 
         if (userName.isEmpty()) {
@@ -79,10 +80,12 @@ public class UserController {
         } else {
             try {
                 conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);  //Database connection
-                String userData = "INSERT INTO userList(userName, userPassword) VALUES(?,?)";
+                String userData = "INSERT INTO userList(userID, userName, userPassword) VALUES(?,?,?)";
                 pst = conn.prepareStatement(userData);
-                pst.setString(1, NameBox.getText());
-                pst.setString(2, PassBox.getText());
+
+                pst.setInt(1, id);
+                pst.setString(2, NameBox.getText());
+                pst.setString(3, PassBox.getText());
 
                 pst.execute();
 
@@ -99,12 +102,14 @@ public class UserController {
             confirmation.showAndWait();
             PassBox.clear();
             NameBox.clear();
+            IDBox.clear();
         }
     }
 
     @FXML
     void modUser(ActionEvent event) throws IOException { //method to update user info based on ID number
         String ID = IDBox.getText().toString();
+
         if (ID.isEmpty()) {
             Alert err = new Alert(Alert.AlertType.ERROR);       //fail message - no ID entered
             err.setTitle("Error");
@@ -138,16 +143,10 @@ public class UserController {
             confirmation.showAndWait();
             PassBox.clear();
             NameBox.clear();
+            IDBox.clear();
 
         }
     }
-
-
-
-
-
-
-
 
 
 
