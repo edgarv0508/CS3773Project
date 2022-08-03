@@ -52,7 +52,7 @@ public class ItemController implements Initializable {
     void createCode(MouseEvent event) throws IOException {
         Stage stage = (Stage) home.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("discountCode-create.fxml"));
-        stage.setTitle("Main View");
+        stage.setTitle("Discount Code");
         stage.setScene(new Scene(root));
     }
 
