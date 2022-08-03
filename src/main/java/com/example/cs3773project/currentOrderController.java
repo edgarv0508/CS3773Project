@@ -84,7 +84,8 @@ public class currentOrderController implements Initializable {
                 //check if order had Not been delivered and place in Observable list
                 System.out.println(rs.getString("DeliveryStatus"));
                 if(!rs.getString("DeliveryStatus").equals("Delivered")) {
-                    cList.add(new currentOrders(rs.getString("orderDate"), rs.getString("Customer"), rs.getDouble("orderAmount"), rs.getString("DeliveryStatus")));
+                    cList.add(new currentOrders(rs.getString("orderDate"), rs.getString("Customer"),
+                            rs.getDouble("orderAmount"), rs.getString("DeliveryStatus")));
                 }
             }
         } catch (SQLException e) {
@@ -100,11 +101,7 @@ public class currentOrderController implements Initializable {
 
         // data information on table view
         tableView.setItems(cList);
-        //disable editing the table
-        //tableView.setSelectionModel(null);
-        //orDateCol.setSortable(false);
-        //custNameCol.setSortable(false);
-       //orAmountCol.setSortable(false);
+
     }
 
 }

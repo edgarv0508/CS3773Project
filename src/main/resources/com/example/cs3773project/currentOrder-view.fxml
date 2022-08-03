@@ -22,8 +22,14 @@
                   <TableColumn fx:id="orStatusCol" prefWidth="124.0" text="Delivery Status" />
               </columns>
             </TableView>
-            <Button fx:id="orderHistory" layoutX="482.0" layoutY="31.0" mnemonicParsing="false" onAction="#goOrderHistory" text="History" />
-            <Button fx:id="home" mnemonicParsing="false" onAction="#goHome" text="Home" />
+             <Button fx:id="orderHistory" layoutX="476.0" layoutY="31.0" mnemonicParsing="false" onAction="#goOrderHistory" text="History">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font></Button>
+             <Button fx:id="home" layoutY="2.0" mnemonicParsing="false" onAction="#goHome" text="Home">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font></Button>
          </children>
       </AnchorPane>
    </content>
