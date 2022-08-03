@@ -50,7 +50,7 @@ public class OrderHistoryController implements Initializable {
     public static String SORT_BY_AMOUNT = "AMOUNT";
 
 
-
+    //goes back to current order scene
     @FXML
     void goCurrentOrders(ActionEvent event) throws IOException {
         Stage stage = (Stage) currentOr.getScene().getWindow();
@@ -58,7 +58,7 @@ public class OrderHistoryController implements Initializable {
         stage.setTitle("Orders");
         stage.setScene(new Scene(root));
     }
-
+    //goes back to home screen
     @FXML
     void goHome(ActionEvent event) throws IOException {
         Stage stage = (Stage) home.getScene().getWindow();
@@ -86,7 +86,8 @@ public class OrderHistoryController implements Initializable {
             ResultSet rs = conn.createStatement().executeQuery("select * from myshop.ordersList");
 
             while (rs.next()) {
-                oList.add(new currentOrders(rs.getString("orderDate"), rs.getString("Customer"), rs.getDouble("orderAmount"), rs.getString("DeliveryStatus")));
+                oList.add(new currentOrders(rs.getString("orderDate"), rs.getString("Customer"),
+                        rs.getDouble("orderAmount"), rs.getString("DeliveryStatus")));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
